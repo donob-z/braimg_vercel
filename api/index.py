@@ -22,15 +22,13 @@ class handler(BaseHTTPRequestHandler):
             }
             res = requests.get(url=git_url, headers=headers)
             origin_url = res.json()["download_url"]
-            res = requests.get(url=origin_url)
-            data = {
-                "url": origin_url
-            }
+            img_res = requests.get(url=origin_url)
+
             self.send_response(200)
-            self.send_header('Access-Control-Allow-Origin', '*')
-            self.send_header('Content-type', res.headers['Content-type'])
+            self.send_header('Content-type', img_res.headers.get('Content-Type', 'image/jpeg'))
+            self.send_header('Content-Length', len(img_res.content))
             self.end_headers()
-            self.wfile.write(res.body)
+            self.wfile.write(img_res.content)
         else:
             self.send_response(200)
             self.send_header('Access-Control-Allow-Origin', '*')
