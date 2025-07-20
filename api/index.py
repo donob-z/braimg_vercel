@@ -22,14 +22,15 @@ class handler(BaseHTTPRequestHandler):
             }
             res = requests.get(url=git_url, headers=headers)
             origin_url = res.json()["download_url"]
+            res = requests.get(url=origin_url)
             data = {
                 "url": origin_url
             }
             self.send_response(200)
             self.send_header('Access-Control-Allow-Origin', '*')
-            self.send_header('Content-type', 'application/json')
+            self.send_header('Content-type', res.headers['Content-type'])
             self.end_headers()
-            self.wfile.write(json.dumps(data).encode('utf-8'))
+            self.wfile.write(res.body)
         else:
             self.send_response(200)
             self.send_header('Access-Control-Allow-Origin', '*')
