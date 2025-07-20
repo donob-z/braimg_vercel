@@ -20,7 +20,7 @@ class handler(BaseHTTPRequestHandler):
         else:
             self.send_response(200)
             self.send_header('Access-Control-Allow-Origin', '*')
-            self.send_header('Content-type', 'text')
+            self.send_header('Content-type', 'text/plain')
             self.end_headers()
             self.wfile.write("Hello braimg!".encode('utf-8'))
         
