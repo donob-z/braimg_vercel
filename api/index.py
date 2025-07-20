@@ -1,6 +1,5 @@
 # -*- coding: UTF-8 -*-
-import requests
-import re
+
 from http.server import BaseHTTPRequestHandler
 import json
 
