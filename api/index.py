@@ -2,7 +2,11 @@
 import requests
 from http.server import BaseHTTPRequestHandler
 import json
+from os import environ
 
+GIT_REPO = environ.get("GIT_REPO")
+GIT_USER = environ.get("GIT_USER")
+GIT_TOKEN = environ.get("GIT_TOKEN")
 
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -10,7 +14,7 @@ class handler(BaseHTTPRequestHandler):
         if "?" in path:
             img_name = path.split('?')[1]
             data = {
-                "img_name": img_name
+                "url": "https://api.github.com/repos/{user}/{repo}/contents/{img_name}".format(user=GIT_USER, repo=GIT_REPO, img_name=img_name)
             }
             self.send_response(200)
             self.send_header('Access-Control-Allow-Origin', '*')
