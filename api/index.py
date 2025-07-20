@@ -6,7 +6,7 @@ import json
 
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
-        path = self.path
+        path = self.path.split('?')[1]
         # user = path.split('?')[1]
         data = {
             "path": path
