@@ -21,8 +21,9 @@ class handler(BaseHTTPRequestHandler):
                 "X-GitHub-Api-Version": "2022-11-28",
             }
             res = requests.get(url=git_url, headers=headers)
+            origin_url = res.json()["download_url"]
             data = {
-                "url": res.json()
+                "url": origin_url
             }
             self.send_response(200)
             self.send_header('Access-Control-Allow-Origin', '*')
