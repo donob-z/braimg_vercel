@@ -13,7 +13,7 @@ class handler(BaseHTTPRequestHandler):
     def do_GET(self):
         path = self.path
         if "?" in path:
-            img_name = path.split('?')[1]            
+            img_name = path.split('?')[1].split('&')[0] 
             git_url = "https://api.github.com/repos/{user}/{repo}/contents/{img_name}".format(user=GIT_USER, repo=GIT_REPO, img_name=img_name)
             headers = {
                 "Accept": "application/vnd.github+json",
