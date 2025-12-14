@@ -34,6 +34,7 @@ class handler(BaseHTTPRequestHandler):
             self.send_header('Access-Control-Allow-Origin', '*')
             self.send_header('Content-type', 'text/plain')
             self.end_headers()
-            self.wfile.write("Hello braimg!".encode('utf-8'))
+            self.wfile.write("Hello PNG.NG!".encode('utf-8'))
         
         return
+
